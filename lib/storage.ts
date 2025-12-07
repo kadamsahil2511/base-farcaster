@@ -1,6 +1,6 @@
 import type { Hero, Battle, GeneBuild } from './gameLogic'
 
-const STORAGE_PREFIX = 'helix-hunter-'
+const STORAGE_PREFIX = 'gnome-hunter-'
 
 function getKey(key: string): string {
   return `${STORAGE_PREFIX}${key}`

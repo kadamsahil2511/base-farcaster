@@ -13,8 +13,8 @@ export default function Home() {
   if (isLoading && !DEV_MODE) {
     return (
       <SafeAreaContainer insets={context?.client.safeAreaInsets}>
-        <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8 bg-pixel-navy">
-          <h1 className="text-3xl font-bold text-center text-white font-mono uppercase tracking-wider">
+        <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8 bg-black">
+          <h1 className="text-3xl font-bold text-center text-white uppercase tracking-wider border-4 border-white bg-white text-black px-6 py-4 brutalism-shadow">
             Loading...
           </h1>
         </div>
@@ -27,8 +27,8 @@ export default function Home() {
   if (!isSDKLoaded && !DEV_MODE) {
     return (
       <SafeAreaContainer insets={context?.client.safeAreaInsets}>
-        <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8 bg-pixel-navy">
-          <h1 className="text-3xl font-bold text-center text-white font-mono uppercase tracking-wider">
+        <div className="flex min-h-screen flex-col items-center justify-center p-4 space-y-8 bg-black">
+          <h1 className="text-3xl font-bold text-center text-white uppercase tracking-wider border-4 border-white bg-white text-black px-6 py-4 brutalism-shadow">
             No farcaster SDK found, please use this miniapp in the farcaster app
           </h1>
         </div>

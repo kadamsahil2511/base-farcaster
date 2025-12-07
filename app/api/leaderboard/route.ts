@@ -6,7 +6,7 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
 })
 
-const LEADERBOARD_KEY = 'helix-hunter-leaderboard'
+const LEADERBOARD_KEY = 'gnome-hunter-leaderboard'
 const LEADERBOARD_LIMIT = 100
 
 type LeaderboardEntry = {

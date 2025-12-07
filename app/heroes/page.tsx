@@ -23,7 +23,7 @@ export default function HeroRosterScreen() {
     if (fid > 0) {
       const userHeroes = getHeroes(fid)
       setHeroes(userHeroes)
-      const lastHeroId = localStorage.getItem(`helix-hunter-lastHeroId-${fid}`)
+      const lastHeroId = localStorage.getItem(`gnome-hunter-lastHeroId-${fid}`)
       if (lastHeroId) {
         setSelectedHeroId(lastHeroId)
       }

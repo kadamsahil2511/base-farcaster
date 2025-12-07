@@ -7,7 +7,7 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
 })
 
-const BATTLES_KEY = 'helix-hunter-battles'
+const BATTLES_KEY = 'gnome-hunter-battles'
 const BATTLES_LIMIT = 1000
 
 export async function GET(request: NextRequest) {

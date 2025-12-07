@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useFrame } from '@/components/farcaster-provider'
 import { SafeAreaContainer } from '@/components/safe-area-container'
@@ -29,6 +29,7 @@ import {
 export default function SinglePlayerScreen() {
   const { context } = useFrame()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [segments] = useState<GenomeSegment[]>(generateGenomeSegments())
   const [selectedSegmentIds, setSelectedSegmentIds] = useState<string[]>([])
   const [currentHero, setCurrentHero] = useState<Hero | null>(null)
@@ -40,36 +41,50 @@ export default function SinglePlayerScreen() {
 
   useEffect(() => {
     if (fid > 0) {
+      const heroes = getHeroes(fid)
+      
+      // Check for heroId in query params first
+      const heroIdFromQuery = searchParams.get('heroId')
+      if (heroIdFromQuery) {
+        const hero = heroes.find((h) => h.id === heroIdFromQuery)
+        if (hero) {
+          setCurrentHero(hero)
+          setSelectedSegmentIds(hero.geneBuild.segmentIds)
+          saveLastHeroId(fid, hero.id)
+          return
+        }
+      }
+      
+      // Fallback to last hero
       const lastHeroId = getLastHeroId(fid)
       if (lastHeroId) {
-        const heroes = getHeroes(fid)
         const hero = heroes.find((h) => h.id === lastHeroId)
         if (hero) {
           setCurrentHero(hero)
           setSelectedSegmentIds(hero.geneBuild.segmentIds)
-        }
-      } else {
-        // Create default hero if none exists
-        const heroes = getHeroes(fid)
-        if (heroes.length === 0) {
-          const defaultStats = genomeToStats([], segments)
-          const defaultHero: Hero = {
-            id: `hero-${Date.now()}`,
-            name: `${username}#001`,
-            fid,
-            stats: defaultStats,
-            geneBuild: { segmentIds: [] },
-            totalWins: 0,
-            totalPoints: 0,
-            badges: [],
-            createdAt: Date.now(),
-          }
-          saveHero(defaultHero)
-          setCurrentHero(defaultHero)
+          return
         }
       }
+      
+      // Create default hero if none exists
+      if (heroes.length === 0) {
+        const defaultStats = genomeToStats([], segments)
+        const defaultHero: Hero = {
+          id: `hero-${Date.now()}`,
+          name: `${username}#001`,
+          fid,
+          stats: defaultStats,
+          geneBuild: { segmentIds: [] },
+          totalWins: 0,
+          totalPoints: 0,
+          badges: [],
+          createdAt: Date.now(),
+        }
+        saveHero(defaultHero)
+        setCurrentHero(defaultHero)
+      }
     }
-  }, [fid, username, segments])
+  }, [fid, username, segments, searchParams])
 
   const handleStartMission = async () => {
     if (selectedSegmentIds.length < 3 || selectedSegmentIds.length > 5) {
@@ -176,8 +191,22 @@ export default function SinglePlayerScreen() {
               <GenomeChart
                 segments={segments}
                 selectedSegmentIds={selectedSegmentIds}
-                onSegmentClick={() => {}}
-                onSelectionChange={setSelectedSegmentIds}
+                onSegmentClick={(segmentId) => {
+                  // Optional: Add any additional logic when a segment is clicked
+                  console.log('Segment clicked:', segmentId)
+                }}
+                onSelectionChange={(newSelection) => {
+                  setSelectedSegmentIds(newSelection)
+                  // Update hero's gene build when selection changes
+                  if (currentHero) {
+                    const updatedHero: Hero = {
+                      ...currentHero,
+                      geneBuild: { segmentIds: newSelection },
+                      stats: genomeToStats(newSelection, segments),
+                    }
+                    setCurrentHero(updatedHero)
+                  }
+                }}
               />
             </div>
 

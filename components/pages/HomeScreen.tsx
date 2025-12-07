@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useFrame } from '@/components/farcaster-provider'
-import { PixelLogoHelix } from '@/components/svg/PixelLogoHelix'
 import { PixelBadgeIcon } from '@/components/svg/PixelBadgeIcon'
 import { getHeroes, getTotalPoints } from '@/lib/storage'
+import Image from 'next/image'
 
 type LeaderboardEntry = {
   fid: number
@@ -48,102 +48,110 @@ export function HomeScreen() {
   }, [fid])
 
   return (
-    <div className="min-h-screen bg-pixel-navy text-white p-4">
-      {/* Header */}
-      <header className="mb-6 border-2 border-slate-600 bg-slate-900 p-4 pixel-shadow">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="w-12 h-12">
-            <PixelLogoHelix className="w-full h-full" />
-          </div>
+    <div className="min-h-screen bg-black text-white p-4 relative overflow-hidden">
+      {/* Translucent background logo */}
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <div className="relative w-full h-full opacity-10">
+          <Image
+            src="/images/gnome-logo.png"
+            alt="Gnome Hunter Logo"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </div>
 
-          {/* Title */}
-          <h1 className="text-xl font-mono uppercase tracking-widest text-center flex-1">
-            Helix Hunter
-          </h1>
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="mb-6 border-4 border-black bg-black p-4 brutalism-shadow">
+          <div className="flex items-center justify-between">
+            {/* Title */}
+            <h1 className="text-2xl font-bold uppercase tracking-widest text-center flex-1 text-white">
+              Gnome Hunter
+            </h1>
 
-          {/* Profile */}
-          <div className="flex items-center gap-2">
-            <div className="text-right">
-              <p className="text-xs font-mono uppercase text-slate-400">{username}</p>
-              <p className="text-sm font-mono text-cyan-400">{userPoints} pts</p>
+            {/* Profile */}
+            <div className="flex items-center gap-3">
+              <div className="text-right border-4 border-black bg-white px-3 py-2">
+                <p className="text-xs font-bold uppercase text-black">{username}</p>
+                <p className="text-sm font-bold text-black">{userPoints} pts</p>
+              </div>
+              <div className="flex gap-1">
+                {userBadges.slice(0, 3).map((badge) => (
+                  <PixelBadgeIcon key={badge} type={badge as any} size={20} />
+                ))}
+              </div>
             </div>
-            <div className="flex gap-1">
-              {userBadges.slice(0, 3).map((badge) => (
-                <PixelBadgeIcon key={badge} type={badge as any} size={20} />
-              ))}
-            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Main content - 3 columns on desktop, stacked on mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-        {/* Left column */}
-        <div className="border-2 border-slate-600 bg-slate-900 p-6 pixel-shadow">
-          <h2 className="text-lg font-mono uppercase tracking-wider mb-4 text-cyan-400">
-            Genome Hunt
-          </h2>
-          <p className="text-sm text-slate-400 mb-4 font-mono">
-            Select genome segments to build your hero and battle zombies.
-          </p>
-          <Link
-            href="/singleplayer"
-            className="block w-full py-3 px-4 bg-cyan-500 border-2 border-cyan-300 text-white font-mono uppercase tracking-wider text-center hover:bg-cyan-600 transition-colors mb-2 pixel-shadow-sm"
-          >
-            Genome Hunt
-          </Link>
-          <Link
-            href="/heroes"
-            className="block w-full py-3 px-4 bg-slate-800 border-2 border-slate-600 text-slate-300 font-mono uppercase tracking-wider text-center hover:bg-slate-700 transition-colors pixel-shadow-sm"
-          >
-            Resume Old Heroes
-          </Link>
-        </div>
-
-        {/* Center column */}
-        <div className="border-2 border-slate-600 bg-slate-900 p-6 pixel-shadow flex flex-col items-center justify-center">
-          <div className="w-48 h-48 mb-4">
-            <PixelLogoHelix className="w-full h-full" />
+        {/* Main content - 3 columns on desktop, stacked on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {/* Left column */}
+          <div className="border-4 border-black bg-white p-6 brutalism-shadow">
+            <h2 className="text-xl font-bold uppercase tracking-wider mb-4 text-black">
+              Genome Hunt
+            </h2>
+            <p className="text-sm text-black mb-4 font-bold">
+              Select genome segments to build your hero and battle zombies.
+            </p>
+            <Link
+              href="/singleplayer"
+              className="block w-full py-4 px-4 bg-black border-4 border-black text-white font-bold uppercase tracking-wider text-center hover:bg-white hover:text-black transition-all mb-3 brutalism-shadow-sm"
+            >
+              Genome Hunt
+            </Link>
+            <Link
+              href="/heroes"
+              className="block w-full py-4 px-4 bg-white border-4 border-black text-black font-bold uppercase tracking-wider text-center hover:bg-black hover:text-white transition-all brutalism-shadow-sm"
+            >
+              Resume Old Heroes
+            </Link>
           </div>
-          <p className="text-xs text-slate-400 font-mono uppercase tracking-wider text-center">
-            Tap genome rings to build your hero
-          </p>
-        </div>
 
-        {/* Right column */}
-        <div className="border-2 border-slate-600 bg-slate-900 p-6 pixel-shadow">
-          <h2 className="text-lg font-mono uppercase tracking-wider mb-4 text-pink-400">
-            Zombies Lab
-          </h2>
-          <p className="text-sm text-slate-400 mb-4 font-mono">
-            Experiment with zombie waves from other players.
-          </p>
-          <Link
-            href="/multiplayer"
-            className="block w-full py-3 px-4 bg-pink-500 border-2 border-pink-300 text-white font-mono uppercase tracking-wider text-center hover:bg-pink-600 transition-colors mb-4 pixel-shadow-sm"
-          >
-            Multiplayer Mode
-          </Link>
+          {/* Center column */}
+          <div className="border-4 border-black bg-white p-6 brutalism-shadow flex flex-col items-center justify-center">
+            <p className="text-sm text-black font-bold uppercase tracking-wider text-center">
+              Tap genome rings to build your hero
+            </p>
+          </div>
 
-          {/* Leaderboard */}
-          <div className="mt-4">
-            <h3 className="text-sm font-mono uppercase tracking-wider mb-2 text-slate-400">
-              Top Players
-            </h3>
-            <div className="space-y-1">
-              {leaderboard.map((entry) => (
-                <div
-                  key={entry.fid}
-                  className="flex items-center justify-between text-xs font-mono py-1"
-                >
-                  <div className="flex items-center gap-2">
-                    {entry.rank === 1 && <span className="text-yellow-400">👑</span>}
-                    <span className="text-slate-300">{entry.username}</span>
+          {/* Right column */}
+          <div className="border-4 border-black bg-white p-6 brutalism-shadow">
+            <h2 className="text-xl font-bold uppercase tracking-wider mb-4 text-black">
+              Zombies Lab
+            </h2>
+            <p className="text-sm text-black mb-4 font-bold">
+              Experiment with zombie waves from other players.
+            </p>
+            <Link
+              href="/multiplayer"
+              className="block w-full py-4 px-4 bg-black border-4 border-black text-white font-bold uppercase tracking-wider text-center hover:bg-white hover:text-black transition-all mb-4 brutalism-shadow-sm"
+            >
+              Multiplayer Mode
+            </Link>
+
+            {/* Leaderboard */}
+            <div className="mt-4 border-4 border-black bg-black p-3">
+              <h3 className="text-sm font-bold uppercase tracking-wider mb-3 text-white">
+                Top Players
+              </h3>
+              <div className="space-y-2">
+                {leaderboard.map((entry) => (
+                  <div
+                    key={entry.fid}
+                    className="flex items-center justify-between text-xs font-bold py-2 px-2 bg-white border-2 border-black"
+                  >
+                    <div className="flex items-center gap-2">
+                      {entry.rank === 1 && <span className="text-black">👑</span>}
+                      <span className="text-black">{entry.username}</span>
+                    </div>
+                    <span className="text-black font-bold">{entry.totalPoints}</span>
                   </div>
-                  <span className="text-cyan-400">{entry.totalPoints}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

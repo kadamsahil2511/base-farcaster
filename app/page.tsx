@@ -6,10 +6,10 @@ const frame = {
   version: 'next',
   imageUrl: `${APP_URL}/img`,
   button: {
-    title: 'Launch Helix Hunter',
+    title: 'Launch Gnome Hunter',
     action: {
       type: 'launch_frame',
-      name: 'Helix Hunter',
+      name: 'Gnome Hunter',
       url: APP_URL,
       splashImageUrl: `${APP_URL}/img`,
       splashBackgroundColor: '#020617',
@@ -19,9 +19,9 @@ const frame = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Helix Hunter - Genome Battle Game',
+    title: 'Gnome Hunter - Genome Battle Game',
     openGraph: {
-      title: 'Helix Hunter',
+      title: 'Gnome Hunter',
       description: 'A retro pixel-art genome battle game on Farcaster',
     },
     other: {

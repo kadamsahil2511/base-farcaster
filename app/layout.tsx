@@ -4,7 +4,7 @@ import { Providers } from '@/components/providers'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Helix Hunter - Genome Battle Game',
+  title: 'Gnome Hunter - Genome Battle Game',
   description: 'A retro pixel-art genome battle game on Farcaster',
 }
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-pixel-navy text-white">
+      <body className="bg-black text-white">
         <Providers>{children}</Providers>
       </body>
     </html>

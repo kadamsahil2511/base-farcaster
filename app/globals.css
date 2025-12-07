@@ -39,4 +39,17 @@ body {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+  
+  /* Neo-brutalism utilities */
+  .brutalism-shadow {
+    box-shadow: 8px 8px 0 0 #000000;
+  }
+  
+  .brutalism-shadow-sm {
+    box-shadow: 4px 4px 0 0 #000000;
+  }
+  
+  .brutalism-shadow-lg {
+    box-shadow: 12px 12px 0 0 #000000;
+  }
 }
