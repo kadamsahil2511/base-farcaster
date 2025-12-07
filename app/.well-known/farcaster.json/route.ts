@@ -1,9 +1,31 @@
 import { NextResponse } from 'next/server'
 
-const hostedManifestUrl =
-  'https://api.farcaster.xyz/miniapps/hosted-manifest/019af893-b769-c17b-5896-d372883da1cd'
+// Serve a static Farcaster miniapp manifest directly from the app.
+// Update the fields below if you change your app domain or assets.
+export const revalidate = 0
 
 export async function GET() {
-  return NextResponse.redirect(hostedManifestUrl, 307)
+  const manifest = {
+    miniapp: {
+      version: '1',
+      name: 'Genome Hunters',
+      iconUrl: 'https://base-farcaster-eta.vercel.app/img',
+      homeUrl: 'https://base-farcaster-eta.vercel.app/',
+      subtitle: 'Hunt Demons',
+      description:
+        'Gnome Hunters is a fast, science-themed mini-game where you decode circular genome patterns, build powerful gene-infused heroes, and battle waves of mutated zombies.',
+      primaryCategory: 'games',
+      splashImageUrl: 'https://base-farcaster-eta.vercel.app/img',
+      splashBackgroundColor: '#000000',
+      canonicalDomain: 'base-farcaster-eta.vercel.app',
+    },
+  }
+
+  return NextResponse.json(manifest, {
+    status: 200,
+    headers: {
+      'cache-control': 'no-store',
+    },
+  })
 }
 
