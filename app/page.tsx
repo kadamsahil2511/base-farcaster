@@ -4,25 +4,25 @@ import type { Metadata } from 'next'
 
 const frame = {
   version: 'next',
-  imageUrl: `${APP_URL}/images/base.png`,
+  imageUrl: `${APP_URL}/img`,
   button: {
-    title: 'Launch Template',
+    title: 'Launch Helix Hunter',
     action: {
       type: 'launch_frame',
-      name: 'Base Farcaster MiniApp Template',
+      name: 'Helix Hunter',
       url: APP_URL,
-      splashImageUrl: `${APP_URL}/images/splash.png`,
-      splashBackgroundColor: '#f7f7f7',
+      splashImageUrl: `${APP_URL}/img`,
+      splashBackgroundColor: '#020617',
     },
   },
 }
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Base Farcaster MiniApp Template',
+    title: 'Helix Hunter - Genome Battle Game',
     openGraph: {
-      title: 'Base Farcaster MiniApp Template',
-      description: 'A template for building mini-apps on Farcaster and Base',
+      title: 'Helix Hunter',
+      description: 'A retro pixel-art genome battle game on Farcaster',
     },
     other: {
       'fc:frame': JSON.stringify(frame),
