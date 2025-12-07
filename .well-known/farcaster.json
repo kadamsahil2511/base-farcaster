@@ -1,36 +1,37 @@
 {
     "accountAssociation": {
-        "header": "eyJmaWQiOjEzOTEzMjUsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhkMzk5RUQwRWZDNDIxMzJlMkYyMGYzZkEwNDY1NWQyM2Y4ZjI0NTJkIn0",
-        "payload": "eyJkb21haW4iOiJtaW5pLnN1cGVydXNlcnouY29tIn0",
-        "signature": "MHhkNzRmNTViMjRkYjVkZDc1MmZkYjI1NDA0NDBlYmUzYzllM2U0NGNlMzU1NjJlYjJlZTkxYWYzOWM0NWU0OTdiMjRiNDBiNzk1YTM5NmZhYmRkYTRhOGY1MGY1YzQ3N2FlZDc2MDQwM2QwYTE5ZGFmOWY5MzRkZTU2NTc0Y2I5OTFj"
-    },
-    "miniapp": {
-        "version": "1",
-        "name": "Genome Hunters",
-        "iconUrl": "https://base-farcaster-eta.vercel.app/img",
-        "homeUrl": "https://base-farcaster-eta.vercel.app",
-        "subtitle": "Short subtitle",
-        "description": "Short marketing description",
-        "splashImageUrl": "https://base-farcaster-eta.vercel.app/img",
-        "splashBackgroundColor": "#000000",
-        "screenshotUrls": [
-            "https://base-farcaster-eta.vercel.app/img"
-        ],
-        "primaryCategory": "games",
-        "tags": [
-            "tag1",
-            "tag2"
-        ],
-        "heroImageUrl": "https://your.domain/og.png",
-        "tagline": "Tagline",
-        "ogTitle": "OG Title",
-        "ogDescription": "OG Description",
-        "ogImageUrl": "https://your.domain/og.png",
-        "requiredChains": [
-            "eip155:8453"
-        ],
-        "requiredCapabilities": [
-            "actions.signIn"
-        ]
-    }
-}
+        "accountAssociation": {
+            "header": "eyJmaWQiOjEzOTEzMjUsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgxMWY5M0VGZDRkODRFNTA2MGEzMWEyRDE3YmY0OTA4MjYxNDgzNGQ2In0",
+            "payload": "eyJkb21haW4iOiJiYXNlLWZhcmNhc3Rlci1ldGEudmVyY2VsLmFwcCJ9",
+            "signature": "802l7b6L2fv3+HWEbNJqqy/UX1x8cXsfbGqr9eEJmy8ekoDSRgmTa8ILMFWutrER8ckxJZ9vljKcPFkcsDeEdRw="
+        },
+        "miniapp": {
+            "version": "1",
+            "name": "Genome Hunters",
+            "iconUrl": "https://base-farcaster-eta.vercel.app/img",
+            "homeUrl": "https://base-farcaster-eta.vercel.app",
+            "subtitle": "Short subtitle",
+            "description": "Short marketing description",
+            "splashImageUrl": "https://base-farcaster-eta.vercel.app/img",
+            "splashBackgroundColor": "#000000",
+            "screenshotUrls": [
+                "https://base-farcaster-eta.vercel.app/img"
+            ],
+            "primaryCategory": "games",
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "heroImageUrl": "https://your.domain/og.png",
+            "tagline": "Tagline",
+            "ogTitle": "OG Title",
+            "ogDescription": "OG Description",
+            "ogImageUrl": "https://your.domain/og.png",
+            "requiredChains": [
+                "eip155:8453"
+            ],
+            "requiredCapabilities": [
+                "actions.signIn"
+            ]
+        }
+    }}
