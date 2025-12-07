@@ -27,7 +27,7 @@ if (typeof window !== "undefined") {
       name: "Farcaster Wallet Example",
       description: "Wallet provider for Farcaster MiniApp",
       url: window.location.origin, // Use actual page URL to avoid mismatch warnings
-      icons: ["https://avatars.githubusercontent.com/u/179229932"],
+      icons: [`${window.location.origin}/img`], // Use dark themed logo
     },
     features: {
       analytics: true, // optional
