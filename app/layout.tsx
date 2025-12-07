@@ -4,6 +4,7 @@ import { Providers } from '@/components/providers'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://base-farcaster-eta.vercel.app'),
   title: 'Gnome Hunter - Genome Battle Game',
   description: 'A retro pixel-art genome battle game on Farcaster',
 }
