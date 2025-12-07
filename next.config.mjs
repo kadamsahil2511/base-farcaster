@@ -8,6 +8,16 @@ const nextConfig = {
       '@react-native-async-storage/async-storage': false,
       'pino-pretty': false,
     }
+    
+    // Handle the porto/katana chain issue by ignoring the warning
+    config.ignoreWarnings = [
+      ...(config.ignoreWarnings || []),
+      {
+        module: /porto/,
+        message: /export 'katana'/,
+      },
+    ]
+    
     return config
   },
 };
