@@ -21,8 +21,9 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const limit = parseInt(searchParams.get('limit') || '10', 10)
 
-    // Get all leaderboard entries
-    const entries = await redis.zrevrange(LEADERBOARD_KEY, 0, limit - 1, {
+    // Get all leaderboard entries (highest score first)
+    const entries = await redis.zrange(LEADERBOARD_KEY, 0, limit - 1, {
+      rev: true,
       withScores: true,
     })
 
