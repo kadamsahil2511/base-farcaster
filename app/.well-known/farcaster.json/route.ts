@@ -19,6 +19,11 @@ export async function GET() {
       splashBackgroundColor: '#000000',
       canonicalDomain: 'base-farcaster-eta.vercel.app',
     },
+    "accountAssociation": {
+    "header": "eyJmaWQiOjEzOTEzMjUsInR5cGUiOiJhdXRoIiwia2V5IjoiMHgxMWY5M0VGZDRkODRFNTA2MGEzMWEyRDE3YmY0OTA4MjYxNDgzNGQ2In0",
+    "payload": "eyJkb21haW4iOiJiYXNlLWZhcmNhc3Rlci1ldGEudmVyY2VsLmFwcCJ9",
+    "signature": "802l7b6L2fv3+HWEbNJqqy/UX1x8cXsfbGqr9eEJmy8ekoDSRgmTa8ILMFWutrER8ckxJZ9vljKcPFkcsDeEdRw="
+  },
   }
 
   return NextResponse.json(manifest, {
